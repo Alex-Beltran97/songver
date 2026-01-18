@@ -46,4 +46,8 @@ public class Accounts {
     public Profile getAuthUser() {
         return authUser;
     }
+
+    public void logOutUser() {
+        this.authUser = null;
+    }
 }
