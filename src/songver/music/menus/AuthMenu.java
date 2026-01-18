@@ -4,14 +4,20 @@ import songver.music.forms.Form;
 import songver.music.forms.LoginForm;
 import songver.music.forms.RegisterForm;
 
+import java.util.HashMap;
+
 public class AuthMenu extends Menu {
+    private final HashMap<String, Integer> option = new HashMap<>();
+
     @Override
-    public int displayMenu() {
+    public HashMap<String, Integer> displayMenu() {
         int option = getOption("""
          1) Login
          2) Register
          3) Quit
         """);
+
+        setOption(option);
 
         switch (option) {
             case 1:
@@ -22,7 +28,11 @@ public class AuthMenu extends Menu {
                 break;
         }
 
-        return option;
+        return this.option;
+    }
+
+    private void setOption(int option) {
+        this.option.put("auth", option);
     }
 
     private void assignForm(Form formType) {

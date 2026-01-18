@@ -2,16 +2,21 @@ package songver.music.menus;
 
 import java.util.HashMap;
 
-public class SongMenu extends Menu{
+public class ConfirmMenu extends Menu {
     private final HashMap<String, Integer> option = new HashMap<>();
+
+    private String action;
+
+    public ConfirmMenu(String action) {
+        this.action = action;
+    }
 
     @Override
     public HashMap<String, Integer> displayMenu() {
+        System.out.println("Are you sure you want to \"" + action + "\"?");
         int option = getOption("""
-         1) Play song
-         2) Edit info song
-         3) Delete song
-         4) Return
+         1) Yes
+         2) No
         """);
 
         setOption(option);
@@ -20,7 +25,6 @@ public class SongMenu extends Menu{
     }
 
     private void setOption(int option) {
-        this.option.put("song", option);
+        this.option.put("confirm", option);
     }
-
 }
