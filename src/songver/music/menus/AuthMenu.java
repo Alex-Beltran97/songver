@@ -5,6 +5,7 @@ import songver.music.forms.LoginForm;
 import songver.music.forms.RegisterForm;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public class AuthMenu extends Menu {
     private final HashMap<String, Integer> option = new HashMap<>();
@@ -16,6 +17,14 @@ public class AuthMenu extends Menu {
          2) Register
          3) Quit
         """);
+
+        if (
+            option != 1 &&
+            option != 2 &&
+            option != 3
+        ) {
+            handleNonExistOption();
+        }
 
         setOption(option);
 

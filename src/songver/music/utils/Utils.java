@@ -1,5 +1,6 @@
 package songver.music.utils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,8 +20,14 @@ public class Utils {
     }
 
     public int getOption(String prompt) {
-        System.out.println(prompt);
-        int option = (int) SCANNER.nextInt();
+        int option = 0;
+        try {
+            System.out.println(prompt);
+            option = (int) SCANNER.nextInt();
+        } catch (InputMismatchException e) {
+            option = -1;
+            System.out.println("🚫 Something went wrong while getting option: " + e.getMessage());
+        }
         SCANNER.nextLine();
         return option;
     }

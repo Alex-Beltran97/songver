@@ -19,6 +19,11 @@ public abstract class Menu extends Utils {
         getDivider();
     }
 
+    public void handleNonExistOption() {
+        String nonExistOptionMsg = "⚠️Invalid number option. Please read de list option below and try again.\n";
+        throw new Error(nonExistOptionMsg);
+    }
+
     public void setCurrentForm(Form form) {
         this.currentForm = form;
     }

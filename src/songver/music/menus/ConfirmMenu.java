@@ -19,6 +19,10 @@ public class ConfirmMenu extends Menu {
          2) No
         """);
 
+        if (option != 1 && option != 2) {
+            handleNonExistOption();
+        }
+
         setOption(option);
 
         return this.option;
