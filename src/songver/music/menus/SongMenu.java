@@ -14,6 +14,15 @@ public class SongMenu extends Menu{
          4) Return
         """);
 
+        if (
+            option != 1 &&
+            option != 2 &&
+            option != 3 &&
+            option != 4
+        ) {
+            handleNonExistOption();
+        }
+
         setOption(option);
 
         return this.option;
@@ -22,5 +31,4 @@ public class SongMenu extends Menu{
     private void setOption(int option) {
         this.option.put("song", option);
     }
-
 }
