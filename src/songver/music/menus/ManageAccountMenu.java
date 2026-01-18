@@ -14,6 +14,15 @@ public class ManageAccountMenu extends Menu{
          4) Return
         """);
 
+        if (
+            option != 1 &&
+            option != 2 &&
+            option != 3 &&
+            option != 4
+        ) {
+            handleNonExistOption();
+        }
+
         setOption(option);
 
         return this.option;

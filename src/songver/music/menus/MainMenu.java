@@ -14,6 +14,15 @@ public class MainMenu extends Menu{
          4) Logout
         """);
 
+       if (
+           option != 1 &&
+           option != 2 &&
+           option != 3 &&
+           option != 4
+       ) {
+           handleNonExistOption();
+       }
+
         setOption(option);
 
         return this.option;

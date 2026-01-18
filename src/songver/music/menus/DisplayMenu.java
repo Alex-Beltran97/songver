@@ -20,9 +20,13 @@ public class DisplayMenu {
              setMenu(new MainMenu());
             }
 
-            HashMap<String,Integer> result = menuType.displayMenu();
+            try {
+                HashMap<String,Integer> result = menuType.displayMenu();
+                handleMenuAction(result);
+            } catch (Error e) {
+                System.out.println(e.getMessage());
+            }
 
-            handleMenuAction(result);
         } while (!hasQuit);
     }
 
