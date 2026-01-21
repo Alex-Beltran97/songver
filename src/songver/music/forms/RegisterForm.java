@@ -3,7 +3,10 @@ package songver.music.forms;
 import songver.music.platform.Accounts;
 import songver.music.platform.Profile;
 
+import java.util.Objects;
+
 public class RegisterForm extends Form {
+    private final Accounts accounts = Accounts.getInstance();
     @Override
     public void showForm() {
         try {
@@ -21,8 +24,8 @@ public class RegisterForm extends Form {
 
             Profile profile = new Profile(userName, emailAddress, password);
 
-            Accounts accounts = Accounts.getInstance();
             accounts.createProfile(profile);
+            accounts.logOutUser();
 
             successMessage();
         } catch (Error e) {
@@ -31,9 +34,30 @@ public class RegisterForm extends Form {
     }
 
     @Override
+    public void fieldValidator(String field, String value) {
+        super.fieldValidator(field, value);
+
+        boolean userExist = false;
+
+        if (Objects.equals(field, "Email")) {
+            try {
+                accounts.findUser(value);
+                userExist = true;
+                accounts.logOutUser();
+            } catch (Error e) {
+                System.out.println("✅ Email can be used");
+            }
+        }
+
+        if (userExist) {
+            throw new Error("User is already exist. Try with another email.\n");
+        }
+    }
+
+    @Override
     public void successMessage() {
         System.out.println("✅ Congrats. Your user was created successfully.");
-        System.out.println("Now, try to login to start.");
+        System.out.println("Now, try to login to start.\n");
         getDivider();
     }
 }
