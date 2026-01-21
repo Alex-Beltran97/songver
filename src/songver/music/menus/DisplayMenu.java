@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DisplayMenu {
-    private Accounts accounts = Accounts.getInstance();
+    private final Accounts accounts = Accounts.getInstance();
     private boolean hasQuit = false;
     private Menu menuType;
 
     public void display() {
-        System.out.println("What do you want to do?");
+        System.out.println("What do you want to do?\n");
 
         setMenu(new AuthMenu());
 
