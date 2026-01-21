@@ -48,6 +48,17 @@ public class DisplayMenu {
             return;
         };
 
+        if (fromMain != null && fromMain == 3) {
+            setMenu(new ManageAccountMenu());
+            HashMap<String,Integer> result = menuType.displayMenu();
+
+            if (result.get("manage") == 3) {
+                setMenu(new MainMenu());
+            }
+
+            return;
+        }
+
         if (fromMain != null && fromMain == 4) {
             setMenu(new ConfirmMenu("logout account"));
 

@@ -8,10 +8,9 @@ public class ManageAccountMenu extends Menu{
     @Override
     public HashMap<String, Integer> displayMenu() {
         int option = getOption("""
-         1) Play song
-         2) Edit info song
-         3) Delete song
-         4) Return
+         1) Edit profile
+         2) Delete account
+         3) Return
         """);
 
         if (
