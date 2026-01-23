@@ -1,12 +1,13 @@
 package songver.music.forms;
 
+import songver.music.utils.Mode;
 import songver.music.utils.Utils;
 
 import java.util.Objects;
 
 public abstract class Form extends Utils {
     public abstract void showForm();
-    public abstract void successMessage();
+    public abstract void successMessage(Mode mode);
 
     public void fieldValidator(String field, String value) {
         if (isEmpty(value)) {

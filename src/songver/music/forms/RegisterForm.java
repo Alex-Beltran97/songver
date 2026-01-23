@@ -2,11 +2,18 @@ package songver.music.forms;
 
 import songver.music.platform.Accounts;
 import songver.music.platform.Profile;
+import songver.music.utils.Mode;
 
 import java.util.Objects;
 
 public class RegisterForm extends Form {
     private final Accounts accounts = Accounts.getInstance();
+    private final Mode mode;
+
+    public RegisterForm(Mode mode) {
+        this.mode = mode;
+    }
+
     @Override
     public void showForm() {
         try {
@@ -24,10 +31,19 @@ public class RegisterForm extends Form {
 
             Profile profile = new Profile(userName, emailAddress, password);
 
-            accounts.createProfile(profile);
-            accounts.logOutUser();
+            if (mode == Mode.CREATE) {
+                accounts.createProfile(profile);
+                accounts.logOutUser();
+                successMessage(mode);
+                return;
+            }
 
-            successMessage();
+            if (mode == Mode.EDIT) {
+                accounts.editProfile(profile);
+                successMessage(mode);
+                return;
+            }
+
         } catch (Error e) {
             throw new Error("🚫 Something went wrong while creating user profile: " + e.getMessage());
         }
@@ -36,6 +52,8 @@ public class RegisterForm extends Form {
     @Override
     public void fieldValidator(String field, String value) {
         super.fieldValidator(field, value);
+
+        if (mode == Mode.EDIT) return;
 
         boolean userExist = false;
 
@@ -55,9 +73,12 @@ public class RegisterForm extends Form {
     }
 
     @Override
-    public void successMessage() {
-        System.out.println("✅ Congrats. Your user was created successfully.");
-        System.out.println("Now, try to login to start.\n");
+    public void successMessage(Mode mode) {
+        String statusMsg = mode == Mode.CREATE ? "created" : "edited";
+        System.out.println("✅ Congrats. Your user was " + statusMsg + " successfully.");
+        if (statusMsg.equals("created")) {
+            System.out.println("Now, try to login to start.\n");
+        }
         getDivider();
     }
 }
