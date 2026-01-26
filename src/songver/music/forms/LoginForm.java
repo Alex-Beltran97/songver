@@ -2,6 +2,7 @@ package songver.music.forms;
 
 import songver.music.platform.Accounts;
 import songver.music.platform.Profile;
+import songver.music.utils.Mode;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class LoginForm extends Form {
             String password = getText("Please set your password:").trim();
             fieldValidator("Password", password);
 
-            successMessage();
+            successMessage(Mode.CREATE);
         } catch (Error e) {
             throw new Error("🚫 Something went wrong while login user profile: " + e.getMessage());
         }
@@ -34,7 +35,7 @@ public class LoginForm extends Form {
     }
 
     @Override
-    public void successMessage() {
+    public void successMessage(Mode mode) {
         System.out.println("✅ Login successfully!!!\n" +
             "Welcome " + accounts.getAuthUser().getUserName() + "\n"
         );

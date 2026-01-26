@@ -4,7 +4,6 @@ import songver.music.forms.Form;
 import songver.music.utils.Utils;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 public abstract class Menu extends Utils {
     protected Form currentForm;

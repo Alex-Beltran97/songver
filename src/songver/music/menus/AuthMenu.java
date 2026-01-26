@@ -3,9 +3,9 @@ package songver.music.menus;
 import songver.music.forms.Form;
 import songver.music.forms.LoginForm;
 import songver.music.forms.RegisterForm;
+import songver.music.utils.Mode;
 
 import java.util.HashMap;
-import java.util.InputMismatchException;
 
 public class AuthMenu extends Menu {
     private final HashMap<String, Integer> option = new HashMap<>();
@@ -33,7 +33,7 @@ public class AuthMenu extends Menu {
                 assignForm(new LoginForm());
                 break;
             case 2:
-                assignForm(new RegisterForm());
+                assignForm(new RegisterForm(Mode.CREATE));
                 break;
         }
 
